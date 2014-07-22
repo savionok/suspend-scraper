@@ -10,7 +10,7 @@ Install the module with: `npm install suspend-scraper`
 OR
 ```shell
 git clone git@github.com:savionok/suspend-scraper.git
-npm install /path/to/cloned/repo
+npm link /path/to/cloned/repo
 ```
 
 ### Usage
