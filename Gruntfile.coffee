@@ -43,6 +43,16 @@ module.exports = (grunt)->
         src: ['**/*.coffee']
         dest: 'test/'
         ext: '.js'
+    copy:
+      main:
+        files:[
+          expand: true
+          cwd: 'src/test/support'
+          src: ['*']
+          dest: 'test/support/'
+          filter: 'isFile'
+        ]
+
     simplemocha:
       all:
         src: [
@@ -85,6 +95,7 @@ module.exports = (grunt)->
 
   # tasks.
   grunt.registerTask 'compile', [
+    'copy'
     'coffeelint'
     'coffee'
   ]
@@ -94,6 +105,7 @@ module.exports = (grunt)->
   ]
 
   grunt.registerTask 'default', [
+    'copy'
     'compile'
     'test'
   ]
