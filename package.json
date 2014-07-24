@@ -38,5 +38,10 @@
     "mocha-cakes": "~0.9.0",
     "grunt": "~0.4.5"
   },
-  "keywords": []
+  "keywords": [],
+  "dependencies": {
+    "htmlparser2": "~3.7.3",
+    "request": "~2.38.0",
+    "nock": "~0.42.1"
+  }
 }
