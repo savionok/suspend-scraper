@@ -1,15 +1,16 @@
 'use strict'
 
-suspend_scraper = require('../lib/acc-scraper')
+suspend_scraper = require('../lib/gnf-scraper')
 
 nock = require('nock')
-apacanal_response = nock('http://www.acc.md')
+gasnaturalfenosa_response = nock('http://www.gasnaturalfenosa.md')
   .defaultReplyHeaders({
     'X-Powered-By': 'Rails',
     'Content-Type': 'text/html'
   })
-  .get('/sis_apei_2.html')
-  .replyWithFile(200, __dirname + '/support/apacanal.html')
+  .get('/news/pentru-mbun-t-irea-serviciilor-prestate-
+    clien-ilor-cs-red-union-fenosa-sa-anun-c-miercuri-30-iu')
+  .replyWithFile(200, __dirname + '/support/gasnaturalfenosa.html')
 
 describe 'Apa Canal Chisinau scraper', ()->
   describe '#get_html()', ()->
