@@ -19,7 +19,7 @@ Licensed under the MIT license.
 WebScraper = require "./web-scraper"
 Suspend = require "./suspend"
 request = require 'request'
-jsdom = require("jsdom")
+cheerio = require 'cheerio'
 
 target_url = "http://www.gasnaturalfenosa.md/news/pentru-mbun-t-
 irea-serviciilor-prestate-clien-ilor-cs-red-union-fenosa-sa-anun-c-miercuri-30-iu"
@@ -35,17 +35,17 @@ class GasNaturalFenosaScraper extends WebScraper
         callback error
   get_suspends: (callback) ->
     @get_html (html) ->
-      jsdom.env html, ["http://code.jquery.com/jquery.js"], (errors, window) ->
-        # console.log("contents of a.the-link:", window.$("a.the-link").text())
-        created_at = 2#window.$(".submitted").text()
-        content = 2#window.$(".node .content p").html()
-        suspends = []
-        s = new Suspend(content)
-        s.created_at = created_at
-        s.type = "HHH"
-        suspends.push s
-        suspends
-        callback suspends
+      # callback html
+      $ = cheerio.load(html.body)
+      created_at = $(".submitted").text()
+      content = $(".node .content p").html()
+      suspends = []
+      s = new Suspend(content)
+      s.created_at = created_at
+      s.type = "gnf"
+      suspends.push s
+      suspends
+      callback suspends
 
   get_post_date: (callback, post_html) ->
     get_html (response) ->
